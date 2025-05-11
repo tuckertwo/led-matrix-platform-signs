@@ -23,17 +23,43 @@ high-voltage source driver
 - 8× [RD16N05](https://www.mouser.com/datasheet/2/149/RFD16N05SM-98571.pdf)
 N-channel power MOSFET
 
-## Row drive arrangement
-Each row is switched through a single RD16N05 power MOSFET.
-These MOSFETs are driven by the TD62784AFG driver chip.
-This chip in turn gets its input from the HEF4028 BCD decoder;
-a 0 input to this decoder results in the top row being enabled.
-
 ## Column drive arrangement
 Each column is driven by one of the output lines of the six MBI5169 chips.
 Each chip drives eight columns.
 These chips act like shift registers; in this way, data are shifted into each
 quadrant, through each column, and then out to the next quadrant.
+
+## Row drive arrangement
+Each row is switched through a single RD16N05 power MOSFET.
+These MOSFETs are driven by the TD62784AFG driver chip.
+This chip in turn gets its input from the HEF4028 BCD decoder;
+a 0 input to this decoder results in the top row being enabled.
+In this way, only one row is lit at a time.
+
+## Pertinent signals
+### Column drive (CD)
+| Short name | Function                |
+|------------|-------------------------|
+| CD CLK     | Shift register clock |
+| CD SI      | Serial data input |
+| CD LE/MOD  | Latch shift register contents; a high pulse on this line causes the shift register contents to be transfered to the output latch. Also used for mode switching. |
+| CD style="text-decoration:overline">OE</span>/SW/<span style="text-decoration:overline">ED</span> | Active-low output enable signal. Also used for mode switching. |
+The column drive ICs are capable of detecting open/short LEDs, and can be
+switched into an error detection mode to facilitate this.
+This is not implemented by the original controller,
+and utilizing this feature would
+be rather difficult given how the matrix panels are designed.
+Interested readers are referred to the
+[MB15169GDW datasheet](https://www.neumueller.com/datenblatt/macroblock/MBI5169%20Datenblatt%20-%20Datasheet.pdf)
+for more information.
+
+### Row drive (RD)
+| Short name | Function                |
+|------------|-------------------------|
+| RD A0      | Bit 0 for row selection |
+| RD A1      | Bit 1 for row selection |
+| RD A2      | Bit 2 for row selection |
+| RD A3      | Bit 3 for row selection |
 
 ## Cable pinouts
 ### Power connector (PL3)
@@ -43,26 +69,25 @@ quadrant, through each column, and then out to the next quadrant.
 | 2   | 5 V      |
 | 3   | 0 V      |
 ### Matrix in/out connector (PL1/PL2)
-<img src="assets/matrix-pinout.png" alt="matrix connector pinout" width="300" />
-| Pin | Pulldown? | Topo notes                                            |                                       Function |
-|-----|-----------|-------------------------------------------------------|------------------------------------------------|
-|  1  |       Yes |                                                       | DRV CLK                                        |
-|  2  |       N/A |                                                       | Signal ground                                  |
-|  3  |       Yes |                                                       | DRV SDI |
-|  4  |       N/A |                                                       | Signal ground                                  |
-|  5  |       Yes |                                                       | BCD A0 |
-|  6  |       N/A |                                                       | Signal ground                                  |
-|  7  |       Yes |                                                       |  BCD A1 |
-|  8  |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C (+12V on control board)  |
-|  9  |       Yes |                                                       | BCD A2 |
-| 10  |       N/A |                                                       | Signal ground                                  |
-| 11  |       Yes |                                                       | BCD A3 |
-| 12  |       N/A |                                                       | Signal ground                                  |
-| 13  |       Yes |                                                       | DRV LE/MOD |
-| 14  |       N/A |                                                       | Signal ground                                  |
-| 15  |           | IC1 9/A7 => IC1 11/Y7 → IC6/10/12/14/16 13/!OE/SW/!ED | Output enable inv/Mode switch/Error detect inv |
-| 16  |       N/A |                                                       | Signal ground                                  |
-| 17  |           |                                                       | ? (N/C on control board)                       |
-| 18  |       N/A |                                                       | Signal ground                                  |
-| 19  |           |                                                       | ? (N/C on control board)                       |
-| 20  |       N/A |                                                       | Signal ground                                  |
+| Pin | Short name | Pulldown? | Topo notes                                            | Remarks                                        |
+|-----|------------|-----------|-------------------------------------------------------|------------------------------------------------|
+|  1  | CD CLK     |       Yes | IC1 ?/A? =>                                           |                                                |
+|  2  | GND        |       N/A |                                                       | Signal ground                                  |
+|  3  | CD SI      |       Yes |                                                       | |
+|  4  | GND        |       N/A |                                                       | Signal ground                                  |
+|  5  | RD A0      |       Yes |                                                       | |
+|  6  | GND        |       N/A |                                                       | Signal ground                                  |
+|  7  | RD A1      |       Yes |                                                       | |
+|  8  | N/C        |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C (+12V on control board)  |
+|  9  | RD A2      |       Yes |                                                       | |
+| 10  | GMD        |       N/A |                                                       | Signal ground                                  |
+| 11  | RD A3      |       Yes |                                                       | |
+| 12  | GMD        |       N/A |                                                       | Signal ground                                  |
+| 13  | CD LE/MOD  |       Yes |                                                       | |
+| 14  | GMD        |       N/A |                                                       | Signal ground                                  |
+| 15  | CD <span style="text-decoration:overline">OE</span>/SW/<span style="text-decoration:overline">ED</span> | Mo | IC1 9/A7 ⇒ IC1 11/Y7 → IC6/10/12/14/16 13/!OE/SW/!ED | Output enable inv/Mode switch/Error detect inv |
+| 16  | GMD        |       N/A |                                                       | Signal ground                                  |
+| 17  | N/C        |           |                                                       | ? (N/C on control board)                       |
+| 18  | GMD        |       N/A |                                                       | Signal ground                                  |
+| 19  | N/C        |           |                                                       | ? (N/C on control board)                       |
+| 20  | GMD        |       N/A |                                                       | Signal ground                                  |
