@@ -48,15 +48,15 @@ quadrant, through each column, and then out to the next quadrant.
 |-----|-----------|-------------------------------------------------------|------------------------------------------------|
 |  1  |       Yes |                                                       | DRV CLK                                        |
 |  2  |       N/A |                                                       | Signal ground                                  |
-|  3  |       Yes |                                                       | DRV SDI|
+|  3  |       Yes |                                                       | DRV SDI |
 |  4  |       N/A |                                                       | Signal ground                                  |
-|  5  |       Yes |                                                       | BCD A0|
+|  5  |       Yes |                                                       | BCD A0 |
 |  6  |       N/A |                                                       | Signal ground                                  |
-|  7  |       Yes |                                                       |  BCD A1|
+|  7  |       Yes |                                                       |  BCD A1 |
 |  8  |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C (+12V on control board)  |
-|  9  |       Yes |                                                       | BCD A2|
+|  9  |       Yes |                                                       | BCD A2 |
 | 10  |       N/A |                                                       | Signal ground                                  |
-| 11  |       Yes |                                                       | BCD A3|
+| 11  |       Yes |                                                       | BCD A3 |
 | 12  |       N/A |                                                       | Signal ground                                  |
 | 13  |       Yes |                                                       | DRV LE/MOD |
 | 14  |       N/A |                                                       | Signal ground                                  |
