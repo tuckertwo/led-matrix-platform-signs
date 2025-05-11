@@ -3,10 +3,13 @@ a brightness control board, a light-dependent resistor (LDR) board,
 and power/data wiring.
 
 # Panels
-Each LED matrix panel contains a 16×48 LED matrix PCB, which is composed of two independent
+Each LED matrix panel contains a 16×48 LED matrix PCB, which is composed of two
+independent
 8×48 matrix quadrants combined on one PCB.
 
-The panel PCBs are connected from bottom to top, right to left (from the front). It functions as one long 8×192 matrix.
+The panel PCBs are connected from bottom to top, right to left (from the front).
+In terms of matrix topology and data flow, they function together
+as one long 8×192 matrix.
 
 ## IC and semiconductor list (per quadrant)
 - 3× [74HCT541D](https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf)
