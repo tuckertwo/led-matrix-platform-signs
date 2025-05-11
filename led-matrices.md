@@ -3,8 +3,10 @@ a brightness control board, a light-dependent resistor (LDR) board,
 and power/data wiring.
 
 # Panels
-Each LED matrix panel contains a 48×16 LED matrix PCB, which is composed of two independent
+Each LED matrix panel contains a 16×48 LED matrix PCB, which is composed of two independent
 8×48 matrix quadrants combined on one PCB.
+
+The panel PCBs are connected from bottom to top, right to left (from the front). It functions as one long 8×192 matrix.
 
 ## IC and semiconductor list (per quadrant)
 - 3× [74HCT541D](https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf)
@@ -38,25 +40,28 @@ quadrant, through each column, and then out to the next quadrant.
 | 2   | 5 V      |
 | 3   | 0 V      |
 ### Matrix in/out connector (PL1/PL2)
+
+<img src="assets/matrix-pinout.png" alt="matrix connector pinout" width="300" />
+
 | Pin | Function |
 |-----|----------|
-| 1   | Signal ground |
-| 2   |             ? |
-| 3   | Signal ground |
-| 4   |             ? |
-| 5   | Signal ground |
-| 6   |             ? |
-| 7   | Signal ground |
-| 8   |             ? |
-| 9   | Signal ground |
-| 10  |             ? |
-| 11  | Signal ground |
-| 12  |             ? |
-| 13  |             ? |
-| 14  |             ? |
-| 15  | Signal ground |
-| 16  |             ? |
-| 17  | Signal ground |
-| 18  |             ? |
-| 19  | Signal ground |
-| 20  |             ? |
+| 1   | DRV CLK |
+| 2   |Signal ground |
+| 3   | DRV SDI |
+| 4   |Signal ground |
+| 5   | BCD A0 |
+| 6   |Signal ground |
+| 7   | BCD A1 |
+| 8   | +12v (appears to be unused/connected to unpopulated components on matrix board) |
+| 9   | BCD A2 |
+| 10  | Signal ground |
+| 11  | BCD A3 |
+| 12  | Signal ground |
+| 13  | DRV LE/MOD |
+| 14  | Signal ground |
+| 15  | DRV OE/SW/ED (appears to function as enable pin; tied to ground in ribbon cable) |
+| 16  | Signal ground |
+| 17  | ?? (NC on control board side) |
+| 18  | GND (NC on control board side) |
+| 19  | ?? (NC on control board side) |
+| 20  | GND (NC on control board side) |
