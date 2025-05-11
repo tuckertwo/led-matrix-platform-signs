@@ -38,25 +38,25 @@ quadrant, through each column, and then out to the next quadrant.
 | 2   | 5 V      |
 | 3   | 0 V      |
 ### Matrix in/out connector (PL1/PL2)
-| Pin | Pulldown? |      Function |
-|-----|-----------|---------------|
-|  1  |       Yes |             ? |
-|  2  |       N/A | Signal ground |
-|  3  |       Yes |             ? |
-|  4  |       N/A | Signal ground |
-|  5  |       Yes |             ? |
-|  6  |       N/A | Signal ground |
-|  7  |       Yes |             ? |
-|  8  |           |             ? |
-|  9  |       Yes |             ? |
-| 10  |       N/A | Signal ground |
-| 11  |       Yes |             ? |
-| 12  |       N/A | Signal ground |
-| 13  |       Yes |             ? |
-| 14  |       N/A | Signal ground |
-| 15  |           |             ? |
-| 16  |       N/A | Signal ground |
-| 17  |           |             ? |
-| 18  |       N/A | Signal ground |
-| 19  |           |             ? |
-| 20  |       N/A | Signal ground |
+| Pin | Pulldown? | Topo notes                                            |                                       Function |
+|-----|-----------|-------------------------------------------------------|------------------------------------------------|
+|  1  |       Yes |                                                       |             ?                                  |
+|  2  |       N/A |                                                       | Signal ground                                  |
+|  3  |       Yes |                                                       |             ?                                  |
+|  4  |       N/A |                                                       | Signal ground                                  |
+|  5  |       Yes |                                                       |             ?                                  |
+|  6  |       N/A |                                                       | Signal ground                                  |
+|  7  |       Yes |                                                       |             ?                                  |
+|  8  |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C                                            |
+|  9  |       Yes |                                                       |             ?                                  |
+| 10  |       N/A |                                                       | Signal ground                                  |
+| 11  |       Yes |                                                       |             ?                                  |
+| 12  |       N/A |                                                       | Signal ground                                  |
+| 13  |       Yes |                                                       |             ?                                  |
+| 14  |       N/A |                                                       | Signal ground                                  |
+| 15  |           | IC1 9/A7 => IC1 11/Y7 → IC6/10/12/14/16 13/!OE/SW/!ED | Output enable inv/Mode switch/Error detect inv |
+| 16  |       N/A |                                                       | Signal ground                                  |
+| 17  |           |                                                       |             ?                                  |
+| 18  |       N/A |                                                       | Signal ground                                  |
+| 19  |           |                                                       |             ?                                  |
+| 20  |       N/A |                                                       | Signal ground                                  |
