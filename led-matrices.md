@@ -43,7 +43,8 @@ In this way, only one row is lit at a time.
 | CD CLK     | Shift register clock |
 | CD SI      | Serial data input |
 | CD LE/MOD  | Latch shift register contents; a high pulse on this line causes the shift register contents to be transfered to the output latch. Also used for mode switching. |
-| CD style="text-decoration:overline">OE</span>/SW/<span style="text-decoration:overline">ED</span> | Active-low output enable signal. Also used for mode switching. |
+| CD <span style="text-decoration:overline">OE</span>/SW/<span style="text-decoration:overline">ED</span> | Active-low output enable signal. Also used for mode switching. |
+
 The column drive ICs are capable of detecting open/short LEDs, and can be
 switched into an error detection mode to facilitate this.
 This is not implemented by the original controller,
