@@ -62,6 +62,20 @@ for more information.
 | RD A2      | Bit 2 for row selection |
 | RD A3      | Bit 3 for row selection |
 
+## Driving cycle
+A complete driving cycle, during which a screenfull of pixels are displayed,
+works as follows:
+the column cycle, described below, is run once for each row, starting with row 0
+and ending with row 7.
+For each column cycle, leave the RD bits as they were,
+then input 192 bits of data on CD SI while strobing CD CLK;
+these bits will be displayed on the selected row of the first and second lines,
+with the first 96 bits going on top and the latter 96 bits going on the bottom.
+Once finished, set RD A0-A3 to high to disable row drive,
+then set CD LE to high momentarily,
+then set RD A0-A3 to the row number to display the pixels.
+Wait an appropriate time, then move on to the next row.
+
 ## Cable pinouts
 ### Power connector (PL3)
 | Pin | Function |
