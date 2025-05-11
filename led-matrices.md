@@ -3,8 +3,10 @@ a brightness control board, a light-dependent resistor (LDR) board,
 and power/data wiring.
 
 # Panels
-Each LED matrix panel contains a 48×16 LED matrix PCB, which is composed of two independent
+Each LED matrix panel contains a 16×48 LED matrix PCB, which is composed of two independent
 8×48 matrix quadrants combined on one PCB.
+
+The panel PCBs are connected from bottom to top, right to left (from the front). It functions as one long 8×192 matrix.
 
 ## IC and semiconductor list (per quadrant)
 - 3× [74HCT541D](https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf)
@@ -38,25 +40,26 @@ quadrant, through each column, and then out to the next quadrant.
 | 2   | 5 V      |
 | 3   | 0 V      |
 ### Matrix in/out connector (PL1/PL2)
+<img src="assets/matrix-pinout.png" alt="matrix connector pinout" width="300" />
 | Pin | Pulldown? | Topo notes                                            |                                       Function |
 |-----|-----------|-------------------------------------------------------|------------------------------------------------|
-|  1  |       Yes |                                                       |             ?                                  |
+|  1  |       Yes |                                                       | DRV CLK                                        |
 |  2  |       N/A |                                                       | Signal ground                                  |
-|  3  |       Yes |                                                       |             ?                                  |
+|  3  |       Yes |                                                       | DRV SDI|
 |  4  |       N/A |                                                       | Signal ground                                  |
-|  5  |       Yes |                                                       |             ?                                  |
+|  5  |       Yes |                                                       | BCD A0|
 |  6  |       N/A |                                                       | Signal ground                                  |
-|  7  |       Yes |                                                       |             ?                                  |
-|  8  |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C                                            |
-|  9  |       Yes |                                                       |             ?                                  |
+|  7  |       Yes |                                                       |  BCD A1|
+|  8  |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C (+12V on control board)  |
+|  9  |       Yes |                                                       | BCD A2|
 | 10  |       N/A |                                                       | Signal ground                                  |
-| 11  |       Yes |                                                       |             ?                                  |
+| 11  |       Yes |                                                       | BCD A3|
 | 12  |       N/A |                                                       | Signal ground                                  |
-| 13  |       Yes |                                                       |             ?                                  |
+| 13  |       Yes |                                                       | DRV LE/MOD |
 | 14  |       N/A |                                                       | Signal ground                                  |
 | 15  |           | IC1 9/A7 => IC1 11/Y7 → IC6/10/12/14/16 13/!OE/SW/!ED | Output enable inv/Mode switch/Error detect inv |
 | 16  |       N/A |                                                       | Signal ground                                  |
-| 17  |           |                                                       |             ?                                  |
+| 17  |           |                                                       | ? (N/C on control board)                       |
 | 18  |       N/A |                                                       | Signal ground                                  |
-| 19  |           |                                                       |             ?                                  |
+| 19  |           |                                                       | ? (N/C on control board)                       |
 | 20  |       N/A |                                                       | Signal ground                                  |
