@@ -40,23 +40,23 @@ quadrant, through each column, and then out to the next quadrant.
 ### Matrix in/out connector (PL1/PL2)
 | Pin | Function |
 |-----|----------|
-| 1   |        ? |
-| 2   |        ? |
-| 3   |        ? |
-| 4   |        ? |
-| 5   |        ? |
-| 6   |        ? |
-| 7   |        ? |
-| 8   |        ? |
-| 9   |        ? |
-| 10  |        ? |
-| 11  |        ? |
-| 12  |        ? |
-| 13  |        ? |
-| 14  |        ? |
-| 15  |        ? |
-| 16  |        ? |
-| 17  |        ? |
-| 18  |        ? |
-| 19  |        ? |
-| 20  |        ? |
+| 1   | Signal ground |
+| 2   |             ? |
+| 3   | Signal ground |
+| 4   |             ? |
+| 5   | Signal ground |
+| 6   |             ? |
+| 7   | Signal ground |
+| 8   |             ? |
+| 9   | Signal ground |
+| 10  |             ? |
+| 11  | Signal ground |
+| 12  |             ? |
+| 13  |             ? |
+| 14  |             ? |
+| 15  | Signal ground |
+| 16  |             ? |
+| 17  | Signal ground |
+| 18  |             ? |
+| 19  | Signal ground |
+| 20  |             ? |
