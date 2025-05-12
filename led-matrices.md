@@ -93,7 +93,7 @@ Wait an appropriate time, then move on to the next row.
 |  5  | RD A0      |       Yes |                                                       | |
 |  6  | GND        |       N/A |                                                       | Signal ground                                  |
 |  7  | RD A1      |       Yes |                                                       | |
-|  8  | N/C        |           | DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | N/C (+12V on control board)  |
+|  8  | +12 V      |       N/A | IC3 P9 Vcc, DNP'd JMP LK1, p 3 of DNP'd PL4, + term of DNP'd C110 | Used as gate voltage for the MOSFETs. |
 |  9  | RD A2      |       Yes |                                                       | |
 | 10  | GMD        |       N/A |                                                       | Signal ground                                  |
 | 11  | RD A3      |       Yes |                                                       | |
