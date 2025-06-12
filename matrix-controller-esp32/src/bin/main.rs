@@ -1,21 +1,31 @@
 #![no_std]
 #![no_main]
+#![feature(generic_arg_infer)]
 #![deny(
     clippy::mem_forget,
     reason = "mem::forget is generally not safe to do with esp_hal types, especially those \
     holding buffers for the duration of a data transfer."
 )]
 
+use core::ops::DerefMut;
 use defmt::info;
 use embassy_executor::Spawner;
-use embassy_time::{Duration, Timer};
+use embassy_sync::blocking_mutex::raw::NoopRawMutex;
+use embassy_time::{Timer};
+use embedded_graphics_framebuf::FrameBuf;
 use esp_hal::clock::CpuClock;
 use esp_hal::gpio::{AnyPin, Level, Output, OutputConfig, Pin};
-use esp_hal::spi::{AnySpi, IntoAnySpi};
+use esp_hal::spi::{IntoAnySpi};
 use esp_hal::timer::systimer::SystemTimer;
-use esp_hal::timer::timg::TimerGroup;
 use esp_println as _;
 use matrix_controller_esp32::matrix::Matrix;
+use embassy_sync::mutex::Mutex;
+use embedded_graphics::mono_font::ascii::FONT_5X8;
+use embedded_graphics::mono_font::MonoTextStyle;
+use embedded_graphics::pixelcolor::Gray8;
+use embedded_graphics::prelude::*;
+use embedded_graphics::text::Text;
+use static_cell::StaticCell;
 
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
@@ -27,6 +37,8 @@ extern crate alloc;
 // This creates a default app-descriptor required by the esp-idf bootloader.
 // For more information see: <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/app_image_format.html#application-description>
 esp_bootloader_esp_idf::esp_app_desc!();
+
+type SharedFrameBuf = Mutex<NoopRawMutex, FrameBuf<Gray8, [Gray8; 96 * 16]>>;
 
 #[esp_hal_embassy::main]
 async fn main(spawner: Spawner) {
@@ -49,27 +61,50 @@ async fn main(spawner: Spawner) {
     // let (mut _wifi_controller, _interfaces) = esp_wifi::wifi::new(&wifi_init, peripherals.WIFI)
     //     .expect("Failed to initialize WIFI controller");
 
-    let m = Matrix::new(
+    info!("meow");
+
+    static MATRIX: StaticCell<Matrix> = StaticCell::new();
+    info!("mrrp");
+    let m = MATRIX.init(Matrix::new(
         peripherals.SPI2.degrade(),
         peripherals.DMA_CH0,
         peripherals.GPIO19.degrade(),
         peripherals.GPIO18.degrade(),
         peripherals.GPIO17.degrade(),
         [
-            peripherals.GPIO21.degrade(),
-            peripherals.GPIO22.degrade(),
+            peripherals.GPIO2.degrade(),
             peripherals.GPIO23.degrade(),
-            peripherals.GPIO16.degrade(),
+            peripherals.GPIO22.degrade(),
+            peripherals.GPIO21.degrade(),
         ],
-    );
+    ));
 
-    spawner.spawn(blink(peripherals.GPIO15.degrade())).unwrap();
-    spawner.spawn(matrix(m)).unwrap();
+    info!("init matrix");
 
-    loop {
-        info!("Hello world!");
-        Timer::after(Duration::from_secs(1)).await;
+    let fbuf = FrameBuf::new([Gray8::BLACK; 96 * 16], 96, 16);
+    static SHARED_FB: StaticCell<SharedFrameBuf> = StaticCell::new();
+    let shared_fb: &SharedFrameBuf = SHARED_FB.init(Mutex::new(fbuf));
+
+    info!("init shared");
+
+
+    // spawner.spawn(blink(peripherals.GPIO15.degrade())).unwrap();
+    info!("spawned blink");
+    spawner.spawn(matrix(m, shared_fb)).unwrap();
+    info!("spawned matrix");
+
+    let style = MonoTextStyle::new(&FONT_5X8, Gray8::WHITE);
+    let t = Text::new("wahoo fish!", Point::new(0, 0), style);
+
+    {
+        let mut fb = shared_fb.lock().await;
+        t.draw(fb.deref_mut()).unwrap();
     }
+
+    // loop {
+    //     info!("Hello world!");
+    //     Timer::after(Duration::from_secs(1)).await;
+    // }
 }
 
 #[embassy_executor::task]
@@ -77,12 +112,21 @@ async fn blink(pin: AnyPin<'static>) {
     let mut led = Output::new(pin, Level::Low, OutputConfig::default());
 
     loop {
+        info!("blink");
         led.toggle();
         Timer::after_millis(500).await;
     }
 }
 
 #[embassy_executor::task]
-async fn matrix(mut m: Matrix<'static>) {
-    
+async fn matrix(m: &'static mut Matrix<'static>, fb: &'static SharedFrameBuf) {
+    loop {
+        {
+            // m.render_buffer(fb.lock().await.data.map(|v| v.luma())).await;
+            m.render_buffer(core::array::from_fn(|i| if i % 7 == 0 { 255 } else { 0 })).await;
+            // m.render_buffer([255; _]).await;
+        }
+        Timer::after_micros(100).await; // TODO: is that a good value?
+        // Timer::after_millis(1).await;
+    }
 }
