@@ -4,3 +4,4 @@
 extern crate alloc;
 
 pub mod matrix;
+pub mod matrix_parl_io;
