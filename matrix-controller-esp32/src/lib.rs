@@ -3,5 +3,5 @@
 #![feature(generic_arg_infer)]
 extern crate alloc;
 
-pub mod matrix;
+mod matrix_spi;
 pub mod matrix_parl_io;

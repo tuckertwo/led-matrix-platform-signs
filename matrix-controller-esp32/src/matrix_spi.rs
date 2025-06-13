@@ -1,9 +1,8 @@
 use core::array;
-use defmt::info;
 use embassy_time::Timer;
 use esp_hal::dma::{DmaChannelFor, DmaRxBuf, DmaTxBuf};
 use esp_hal::dma_buffers;
-use esp_hal::gpio::{AnyPin, DriveMode, DriveStrength, Level, Output, OutputConfig};
+use esp_hal::gpio::{AnyPin, DriveMode, Level, Output, OutputConfig};
 use esp_hal::spi::master::{Config, Spi, SpiDmaBus};
 use esp_hal::spi::{AnySpi, Mode};
 use esp_hal::time::Rate;
@@ -32,13 +31,11 @@ impl<'a> Matrix<'a> {
         le_mod: AnyPin<'a>,
         rows: [AnyPin<'a>; 4],
     ) -> Self {
-        info!("wahoo fish");
         // we're not using rx dma (nothing to receive), but the spi api makes us make a buffer anyway
         // it fails if we make the rx buffer size 0, so we have to set it to 1
         let (rx_buffer, rx_descriptors, tx_buffer, tx_descriptors) = dma_buffers!(1, 192 / 8);
         let dma_tx_buf = DmaTxBuf::new(tx_descriptors, tx_buffer).unwrap();
         let dma_rx_buf = DmaRxBuf::new(rx_descriptors, rx_buffer).unwrap();
-        info!("dma done");
 
         let spi = Spi::new(
             spi,
@@ -52,27 +49,20 @@ impl<'a> Matrix<'a> {
         .with_dma(dma_channel)
         .with_buffers(dma_rx_buf, dma_tx_buf)
         .into_async();
-        info!("spi done");
 
         Self {
             spi,
-            le_mod: Output::new(le_mod, Level::High, OutputConfig::default().with_drive_mode(DriveMode::PushPull)),
+            le_mod: Output::new(
+                le_mod,
+                Level::High,
+                OutputConfig::default().with_drive_mode(DriveMode::PushPull),
+            ),
             rows: rows.map(|row| Output::new(row, Level::High, OutputConfig::default())),
             current_row: 0,
         }
     }
 
     async fn render_row(&mut self, n: u8, data: &[u8; 192 / 8]) {
-        // info!("rendering row {} ({}, {}, {}, {})", n, data[0], data[1], data[2], data[3]);
-        // self.le_mod.set_low();
-        // self.spi.write_async(data).await.unwrap();
-        // // self.rows.iter_mut().for_each(|row| row.set_high());
-        // info!("row pins {}, {}, {}, {}", n % 2, (n / 2) % 2, (n / 4) % 2, (n / 8) % 2);
-        // self.rows[0].set_level(level_of_u8(n % 2));
-        // self.rows[1].set_level(level_of_u8((n / 2) % 2));
-        // self.rows[2].set_level(level_of_u8((n / 4) % 2));
-        // self.rows[3].set_level(level_of_u8(/*(n / 8) % 2*/0));
-        // self.le_mod.set_high();
         self.le_mod.set_low();
         self.spi.write_async(data).await.unwrap();
         self.rows[3].set_high();
@@ -80,7 +70,6 @@ impl<'a> Matrix<'a> {
         self.rows[1].set_level(level_of_u8(n / 2 % 2));
         self.rows[2].set_level(level_of_u8(n / 4 % 2));
         self.le_mod.set_high();
-        // Timer::after_millis(1).await;
         Timer::after_micros(50).await;
         self.rows[3].set_low();
     }
@@ -88,7 +77,8 @@ impl<'a> Matrix<'a> {
     // render the next two physical rows of the display
     pub async fn render_buffer(&mut self, buffer: [u8; 96 * 16]) {
         let buffer_pos: usize = (self.current_row * 192) as usize;
-        // TODO: brightness support
+        // used to have a t*do for brightness support but this driver is just being kept around
+        // for documentation purposes now
         let row_data: [u8; 192 / 8] = array::from_fn(|i| {
             buffer[(buffer_pos + i * 8)..(buffer_pos + (i + 1) * 8)]
                 .iter()

@@ -11,7 +11,7 @@
 use core::ops::DerefMut;
 use defmt::info;
 use embassy_executor::Spawner;
-use embassy_sync::blocking_mutex::raw::{CriticalSectionRawMutex, NoopRawMutex};
+use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
 use embassy_sync::mutex::Mutex;
 use embassy_time::Timer;
 use embedded_graphics::mono_font::ascii::{FONT_5X8, FONT_6X12, FONT_9X15_BOLD};
@@ -20,20 +20,16 @@ use embedded_graphics::pixelcolor::Gray8;
 use embedded_graphics::prelude::*;
 use embedded_graphics::primitives::{PrimitiveStyleBuilder, Rectangle};
 use embedded_graphics::text::Text;
-use embedded_graphics_framebuf::FrameBuf;
 use esp_hal::clock::CpuClock;
-use esp_hal::dma::DmaChannelFor;
 use esp_hal::gpio::{AnyPin, Level, Output, OutputConfig, Pin};
 use esp_hal::interrupt::Priority;
 use esp_hal::interrupt::software::SoftwareInterruptControl;
 use esp_hal::peripherals::{DMA_CH0, PARL_IO};
-use esp_hal::spi::IntoAnySpi;
 use esp_hal::timer::systimer::SystemTimer;
-use esp_hal::timer::timg::TimerGroup;
 use esp_hal_embassy::InterruptExecutor;
 use esp_println as _;
 use matrix_controller_esp32::matrix_parl_io::{DmaFrameBuffer, MatrixParlIo, MatrixParlIoPins};
-use static_cell::{make_static, StaticCell};
+use static_cell::make_static;
 
 #[panic_handler]
 fn panic(_: &core::panic::PanicInfo) -> ! {
@@ -50,8 +46,6 @@ type SharedFrameBuf = Mutex<CriticalSectionRawMutex, DmaFrameBuffer>;
 
 #[esp_hal_embassy::main]
 async fn main(spawner: Spawner) {
-    // generator version: 0.4.0
-
     let config = esp_hal::Config::default().with_cpu_clock(CpuClock::max());
     let peripherals = esp_hal::init(config);
 
@@ -59,9 +53,6 @@ async fn main(spawner: Spawner) {
 
     let timer0 = SystemTimer::new(peripherals.SYSTIMER);
     esp_hal_embassy::init(timer0.alarm0);
-
-    // let timg0 = TimerGroup::new(peripherals.TIMG0);
-    // esp_hal_embassy::init(timg0.timer0);
 
     info!("Embassy initialized!");
 
@@ -71,8 +62,6 @@ async fn main(spawner: Spawner) {
     //     .expect("Failed to initialize WIFI/BLE controller");
     // let (mut _wifi_controller, _interfaces) = esp_wifi::wifi::new(&wifi_init, peripherals.WIFI)
     //     .expect("Failed to initialize WIFI controller");
-
-    info!("meow");
 
     let fbuf = DmaFrameBuffer::new();
     let shared_fb: &SharedFrameBuf = make_static!(Mutex::new(fbuf));
@@ -115,11 +104,6 @@ async fn main(spawner: Spawner) {
         t2.draw(fb.deref_mut()).unwrap();
         // Rectangle::new(Point::new(4, 7), Size::new(8, 1)).into_styled(rect_style).draw(fb.deref_mut()).unwrap();
     }
-
-    // loop {
-    //     info!("Hello world!");
-    //     Timer::after(Duration::from_secs(1)).await;
-    // }
 }
 
 #[embassy_executor::task]
@@ -143,13 +127,9 @@ async fn matrix(
     let mut m = MatrixParlIo::new(parl_io, dma, pins);
     loop {
         {
-            // m.render_buffer(fb.lock().await.data.map(|v| v.luma())).await;
-            // m.render_buffer(core::array::from_fn(|i| if i % 7 == 0 { 255 } else { 0 })).await;
-            // m.render_buffer([255; _]).await;
             let mut fb = fb.lock().await;
             m = m.render(fb.deref_mut()).await.expect("failed to render");
         }
-        Timer::after_micros(10).await; // testing
-        //                                 Timer::after_millis(10).await;
+        Timer::after_micros(10).await;
     }
 }
