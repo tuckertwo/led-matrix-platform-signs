@@ -32,7 +32,7 @@ esp-println = { version = "0.14.0", features = ["defmt-espflash", "esp32c6"] }
 critical-section = "1.2.0"
 embassy-executor = { version = "0.7.0", features = [
   "defmt",
-  "task-arena-size-20480",
+  "nightly"
 ] }
 embassy-time = { version = "0.4.0", features = ["defmt"] }
 esp-hal-embassy = { version = "0.8.1", features = ["defmt", "esp32c6"] }
@@ -59,10 +59,18 @@ smoltcp = { version = "0.12.0", default-features = false, features = [
 ] }
 static_cell = { version = "2.1.0", features = ["nightly"] }
 embedded-graphics = { version = "0.8.1", features = ["defmt"] }
-embedded-graphics-framebuf = "0.5.0"
 embassy-sync = "0.7.0"
 derive_more = { version = "2.0.1", default-features = false, features = ["deref", "deref_mut", "index", "index_mut"] }
 bitfield = "0.19.1"
+edge-dhcp = { version = "0.6.0", features = ["defmt"] }
+edge-nal = "0.5.0"
+edge-nal-embassy = { version = "0.6.0", features = ["defmt"] }
+edge-captive = { version = "0.6.0", features = ["defmt"] }
+heapless = "0.8.0"
+esp-storage = { version = "0.6.0", features = ["esp32c6"] }
+embedded-storage = "0.3.1"
+percent-encoding = { version = "2.3.1", default-features = false }
+embedded-text = "0.7.2"
 
 
 [profile.dev]

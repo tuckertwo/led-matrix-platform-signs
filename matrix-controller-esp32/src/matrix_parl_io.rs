@@ -129,6 +129,8 @@ const fn dma_buffer_size_bytes() -> usize {
     size_of::<FbFrames>()
 }
 
+const UPSIDE_DOWN: bool = true;
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct DmaFrameBuffer {
@@ -163,14 +165,19 @@ impl DmaFrameBuffer {
     }
 
     pub fn set_pixel_internal(&mut self, x: usize, y: usize, color: Gray8) {
-        if x >= COLS * 2 || y >= ROWS * 2 {
+        if x >= /*COLS * 2*/ 96 || y >= /*ROWS * 2*/ 16 {
             return;
         }
         // set the pixel in all frames
         for i in 0..FRAME_COUNT {
             let brightness_step = 1 << (8 - BITS);
             let brightness = (i as u8 + 1).saturating_mul(brightness_step);
-            self.frames[i].set_pixel(y, x, color, brightness);
+            self.frames[i].set_pixel(
+                if UPSIDE_DOWN { 15 - y } else { y },
+                if UPSIDE_DOWN { 95 - x } else { x },
+                color,
+                brightness,
+            );
         }
     }
 }

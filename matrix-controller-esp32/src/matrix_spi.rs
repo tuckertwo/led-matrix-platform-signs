@@ -1,3 +1,7 @@
+// old spi driver
+// not used anymore but kept around for reference
+// might help you understand how the parl_io driver works!
+
 use core::array;
 use embassy_time::Timer;
 use esp_hal::dma::{DmaChannelFor, DmaRxBuf, DmaTxBuf};
