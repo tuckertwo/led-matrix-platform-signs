@@ -106,3 +106,38 @@ Wait an appropriate time, then move on to the next row.
 | 18  | GMD        |       N/A |                                                       | Signal ground                                  |
 | 19  | N/C        |           |                                                       | ? (N/C on control board)                       |
 | 20  | GMD        |       N/A |                                                       | Signal ground                                  |
+
+# Brightness control
+Brightness control is performed using two circuit PCBs:
+the light-dependent resistor (LDR) board,
+which contains a light-dependent resistor and connector
+(and no other components);
+and the brightness control board, which contains the analog electronics required
+to transform the
+light-dependent resistor indication to digital control signals sent to the
+control board.
+
+## Brightness control board connection list
+### Middle left plug
+| Pin | Wire Color | Function |
+|-----|------------|----------|
+|   1 |      Black |      0 V |
+|   2 |        Red |     +5 V |
+
+### Bottom left plug
+| Pin | Wire Color |       Function |
+|-----|------------|----------------|
+|   1 |      Brown | LDR, pot end   |
+|   2 |      Black | LDR            |
+Note: pot wiper is connected to 0 V.
+
+### Bottom right plug
+| Pin | Wire Color |         Function |
+|-----|------------|------------------|
+|   1 |      Brown | Comparator O/P 1 |
+|   2 |        Red | Comparator O/P 2 |
+|   3 |      Black | ? |
+|   4 |      White | ? |
+
+## Brightness control board component list
+- 1x [LM2901N](https://rocelec.widen.net/view/pdf/nqzazlm2ly/NATLS13283-1.pdf?t.download=true&u=5oefqw) quad comparator
