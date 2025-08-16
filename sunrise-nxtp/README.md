@@ -15,7 +15,7 @@ Systems, now [Sunrise SSEA Tech](https://www.sunrisesesatech.com/)) seems like
 it might be responsive to inquiries for documentation.
 As it is, the best available documentation of the protocol in use by the NXTPS
 series comes in the form of a
-[user manual for the NXTP series](.https://forum.arduino.cc/uploads/short-url/xRmk8Crqg6jDzcJVLwyJlv8HTPV.pdf);
+[user manual for the NXTP series](https://forum.arduino.cc/uploads/short-url/xRmk8Crqg6jDzcJVLwyJlv8HTPV.pdf);
 aside from documentation on some I/O pins present on the NXTPS series but not
 the NXTP series, it offers an essentially complete description of the protocol
 in use.
