@@ -18,15 +18,12 @@ class Sunrise():
 
 
     def test(self):
-        self.packettx(b'M\x00\x01\x11WRM Sunrise Test')
-        self.packettx(b'T')
+        self.messagetx(b'WRM Sunrise Test')
         sleep(1)
         for i in range(18):
-            self.packettx(b'M\x00\x01\x11^Y'+str(i))
-            self.packettx(b'T')
+            self.messagetx(b'^Y'+str(i))
             sleep(1)
-        self.packettx(b'M\x00\x01\x11')
-        self.packettx(b'T')
+        self.messagetx(b'')
 
 
     def reset(self):
