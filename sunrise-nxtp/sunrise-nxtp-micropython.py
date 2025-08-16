@@ -23,7 +23,7 @@ class Sunrise():
         for i in range(18):
             self.messagetx(b'^Y'+str(i))
             sleep(1)
-        self.messagetx(b'')
+        self.messagetx(b'Test complete.')
 
 
     def reset(self):
