@@ -7,7 +7,7 @@
 	(title_block
 		(title "TRT-HW05 Sunrise/Daktronics controller")
 		(date "2025-10-08")
-		(rev "03")
+		(rev "04")
 		(company "Bay Area Electric Railroad Association")
 	)
 	(lib_symbols

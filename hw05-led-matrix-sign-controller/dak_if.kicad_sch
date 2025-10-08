@@ -7,7 +7,7 @@
 	(title_block
 		(title "Daktronics-specific circuitry")
 		(date "2025-10-08")
-		(rev "03")
+		(rev "04")
 		(company "Bay Area Electric Railroad Association")
 	)
 	(lib_symbols
@@ -2226,7 +2226,7 @@
 	)
 	(text "To light-dependent resistor directly"
 		(exclude_from_sim no)
-		(at 202.184 40.132 0)
+		(at 201.676 37.592 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2239,12 +2239,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1bc5c5bc-6950-49ea-85ba-bf4204b0dcbc")
-	)
-	(junction
-		(at 160.02 52.07)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1fcb0619-c001-40ff-94e9-d9ac6b03a7fc")
 	)
 	(junction
 		(at 121.92 116.84)
@@ -2271,10 +2265,22 @@
 		(uuid "35606824-af4f-4cf2-b16a-1fe3dbd9c65b")
 	)
 	(junction
+		(at 154.94 49.53)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6098eefc-f409-45e5-8f72-db450e37ee46")
+	)
+	(junction
 		(at 242.57 121.92)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ab0311c-1316-4915-9512-5b51506c1790")
+	)
+	(junction
+		(at 156.21 52.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8bd3e007-4e14-4620-82f8-e867ecdc94bf")
 	)
 	(junction
 		(at 125.73 139.7)
@@ -2293,12 +2299,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ce643b34-9667-45ed-bc93-8755c92239d9")
-	)
-	(junction
-		(at 158.75 49.53)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e905aab2-ebcc-4713-8636-ba0a76e9c50c")
 	)
 	(junction
 		(at 193.04 111.76)
@@ -2348,16 +2348,6 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 38.1) (xy 160.02 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "15e31cd7-dbcc-495c-bb99-afee77096602")
-	)
-	(wire
-		(pts
 			(xy 158.75 116.84) (xy 158.75 111.76)
 		)
 		(stroke
@@ -2365,16 +2355,6 @@
 			(type default)
 		)
 		(uuid "180b7149-e3a9-4642-870f-9e8b3c4b41c6")
-	)
-	(wire
-		(pts
-			(xy 160.02 38.1) (xy 160.02 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1a15a2cf-b4e1-492e-9360-60f58d8c9dc0")
 	)
 	(wire
 		(pts
@@ -2408,7 +2388,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 52.07) (xy 163.83 52.07)
+			(xy 140.97 52.07) (xy 156.21 52.07)
 		)
 		(stroke
 			(width 0)
@@ -2598,16 +2578,6 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 49.53) (xy 158.75 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78f910d1-85ec-431c-bd88-699599a51889")
-	)
-	(wire
-		(pts
 			(xy 166.37 149.86) (xy 121.92 149.86)
 		)
 		(stroke
@@ -2638,6 +2608,16 @@
 	)
 	(wire
 		(pts
+			(xy 154.94 49.53) (xy 163.83 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "840ab646-e714-429b-b1c1-99dabeb52765")
+	)
+	(wire
+		(pts
 			(xy 242.57 144.78) (xy 233.68 144.78)
 		)
 		(stroke
@@ -2648,16 +2628,6 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 35.56) (xy 163.83 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "89337765-d540-4f56-9ada-f725b1214a17")
-	)
-	(wire
-		(pts
 			(xy 193.04 111.76) (xy 227.33 111.76)
 		)
 		(stroke
@@ -2665,6 +2635,16 @@
 			(type default)
 		)
 		(uuid "8dad4b95-e36d-4371-a22a-7e515f74193f")
+	)
+	(wire
+		(pts
+			(xy 154.94 35.56) (xy 154.94 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fbca148-59ea-4102-89ef-c012aa9f2eca")
 	)
 	(wire
 		(pts
@@ -2708,16 +2688,6 @@
 	)
 	(wire
 		(pts
-			(xy 140.97 49.53) (xy 158.75 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99874009-f498-4eac-ac5d-8952f295945c")
-	)
-	(wire
-		(pts
 			(xy 121.92 116.84) (xy 121.92 149.86)
 		)
 		(stroke
@@ -2748,7 +2718,7 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 49.53) (xy 163.83 49.53)
+			(xy 140.97 49.53) (xy 154.94 49.53)
 		)
 		(stroke
 			(width 0)
@@ -2765,6 +2735,16 @@
 			(type default)
 		)
 		(uuid "aa879441-8c7f-4383-899c-08e478eef494")
+	)
+	(wire
+		(pts
+			(xy 154.94 35.56) (xy 163.83 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af425339-cf9b-48c6-8307-37b71d267b6c")
 	)
 	(wire
 		(pts
@@ -2878,6 +2858,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 38.1) (xy 156.21 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc35bbf9-726a-4ad8-b3bd-cc412a00cdef")
+	)
+	(wire
+		(pts
 			(xy 248.92 137.16) (xy 248.92 139.7)
 		)
 		(stroke
@@ -2938,16 +2928,6 @@
 	)
 	(wire
 		(pts
-			(xy 140.97 52.07) (xy 160.02 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "db6dad8a-6ebb-44cc-9efb-88e5dbfb4d06")
-	)
-	(wire
-		(pts
 			(xy 151.13 138.43) (xy 151.13 127)
 		)
 		(stroke
@@ -2978,6 +2958,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 52.07) (xy 163.83 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5cf1172-359f-49fb-80ed-82013102e6a6")
+	)
+	(wire
+		(pts
 			(xy 156.21 116.84) (xy 147.32 116.84)
 		)
 		(stroke
@@ -2995,6 +2985,16 @@
 			(type default)
 		)
 		(uuid "e7977738-1181-4e70-9e46-26f8e19d5fbe")
+	)
+	(wire
+		(pts
+			(xy 156.21 38.1) (xy 163.83 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb7bf2d7-86d8-4a4f-8f33-be87ce87e1ed")
 	)
 	(wire
 		(pts
@@ -4210,7 +4210,7 @@
 				)
 			)
 		)
-		(property "Value" "TE 640456-2"
+		(property "Value" "Molex 0026604020"
 			(at 168.275 40.64 0)
 			(effects
 				(font
