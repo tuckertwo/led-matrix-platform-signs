@@ -6,8 +6,8 @@
 	(paper "USLetter")
 	(title_block
 		(title "Daktronics-specific circuitry")
-		(date "2025-08-29")
-		(rev "02")
+		(date "2025-10-08")
+		(rev "03")
 		(company "Bay Area Electric Railroad Association")
 	)
 	(lib_symbols
@@ -2192,9 +2192,9 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Pinout:\n1:  CD SCK\n3:  CD CO→TI\n3:  RD A0\n5:  RD A1\n7:  RD A2\n9:  RD A3\n11: CD Latch\n\n2-8, 12-14: GND\n8: +12 V"
+	(text "Pinout:\n1:  CD SCK\n3:  CD CO→TI\n5:  RD A0\n7:  RD A1\n9:  RD A2\n11: RD A3\n13: CD Latch\n\n2-8, 12-14: GND\n8: +12 V"
 		(exclude_from_sim no)
-		(at 196.088 97.79 0)
+		(at 210.566 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2202,6 +2202,17 @@
 			(justify left)
 		)
 		(uuid "29d5a597-588b-4bb3-8d2d-29950d912f86")
+	)
+	(text "QA: RD A0\nQB: RD A1\nQC: RD A2\nQD: RD A3 (/blanking)\nQE: CD SCK enable\nQF: CD Latch\nQG, QH: for external use"
+		(exclude_from_sim no)
+		(at 136.652 91.694 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "31506f98-d6f7-4681-a756-d801d12f8379")
 	)
 	(text "To light-dependent resistor\nvia Molex 0026607020 to TE 3-640440-2 adapter"
 		(exclude_from_sim no)
@@ -2250,12 +2261,6 @@
 		(uuid "6ab0311c-1316-4915-9512-5b51506c1790")
 	)
 	(junction
-		(at 191.77 132.08)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9f390cd1-c00d-43ee-9669-cd2843425948")
-	)
-	(junction
 		(at 125.73 139.7)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2272,6 +2277,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ce643b34-9667-45ed-bc93-8755c92239d9")
+	)
+	(junction
+		(at 193.04 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fd327772-8512-4590-9548-cd6b947e2bed")
 	)
 	(wire
 		(pts
@@ -2415,7 +2426,7 @@
 	)
 	(wire
 		(pts
-			(xy 191.77 132.08) (xy 175.26 132.08)
+			(xy 175.26 132.08) (xy 193.04 132.08)
 		)
 		(stroke
 			(width 0)
@@ -2892,16 +2903,6 @@
 			(type default)
 		)
 		(uuid "e61f5ea1-02a3-4c1c-b0fe-49fc5f0a8d7c")
-	)
-	(wire
-		(pts
-			(xy 193.04 132.08) (xy 191.77 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6a1cae7-6789-4b06-92fe-896f84eba7e7")
 	)
 	(wire
 		(pts
@@ -3494,17 +3495,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 191.77 139.7 0)
+		(lib_id "power:+3.3V")
+		(at 193.04 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "519dfa24-e682-42f1-ad77-a3453410bddf")
+		(uuid "48719472-3c16-4775-a135-0d35e8222b87")
 		(property "Reference" "#PWR0206"
-			(at 191.77 146.05 0)
+			(at 193.04 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3512,8 +3513,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 191.77 144.78 0)
+		(property "Value" "+3.3V"
+			(at 193.04 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3521,7 +3522,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 191.77 139.7 0)
+			(at 193.04 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3530,7 +3531,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 191.77 139.7 0)
+			(at 193.04 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3538,8 +3539,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 191.77 139.7 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 193.04 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3548,10 +3549,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "801e977b-bde1-492d-bcb1-af5c13d7ac67")
+			(uuid "2352ccd6-eb05-42c1-9a9a-c41e29c913a4")
 		)
 		(instances
-			(project ""
+			(project "hw05-led-matrix-sign-controller"
 				(path "/268939db-8332-4e95-b629-4f0847d8eb12/aa11d66a-b9d9-471a-9173-8cee8aff3283"
 					(reference "#PWR0206")
 					(unit 1)
@@ -3759,7 +3760,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 191.77 135.89 0)
+		(at 193.04 107.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3767,7 +3768,7 @@
 		(dnp no)
 		(uuid "5fb4d396-e7d5-4298-8134-3b1f4c699555")
 		(property "Reference" "R201"
-			(at 189.23 134.6199 0)
+			(at 190.5 106.6799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3776,7 +3777,7 @@
 			)
 		)
 		(property "Value" "1 kΩ"
-			(at 189.23 137.1599 0)
+			(at 190.5 109.2199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3785,7 +3786,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 192.786 136.144 90)
+			(at 194.056 108.204 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3794,7 +3795,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 191.77 135.89 0)
+			(at 193.04 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3803,7 +3804,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 191.77 135.89 0)
+			(at 193.04 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3818,7 +3819,7 @@
 			(uuid "c0380c2c-f825-4957-abbc-c829f52541a5")
 		)
 		(instances
-			(project ""
+			(project "hw05-led-matrix-sign-controller"
 				(path "/268939db-8332-4e95-b629-4f0847d8eb12/aa11d66a-b9d9-471a-9173-8cee8aff3283"
 					(reference "R201")
 					(unit 1)

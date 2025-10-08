@@ -6,8 +6,8 @@
 	(paper "USLetter")
 	(title_block
 		(title "Switch and button Charlieplexed matrix circuit")
-		(date "2025-08-29")
-		(rev "02")
+		(date "2025-10-08")
+		(rev "03")
 		(company "Bay Area Electric Railroad Association")
 	)
 	(lib_symbols
