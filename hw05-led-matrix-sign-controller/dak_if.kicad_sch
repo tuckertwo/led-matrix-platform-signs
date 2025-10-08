@@ -2216,7 +2216,7 @@
 	)
 	(text "To light-dependent resistor\nvia Molex 0026607020 to TE 3-640440-2 adapter"
 		(exclude_from_sim no)
-		(at 175.26 61.976 0)
+		(at 202.438 53.086 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2224,11 +2224,27 @@
 		)
 		(uuid "83fa141d-7b2c-4152-b83c-ad7ff4e9133b")
 	)
+	(text "To light-dependent resistor directly"
+		(exclude_from_sim no)
+		(at 202.184 40.132 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "fcb4e8a2-ca11-4451-8b2f-bd6e97ec4b55")
+	)
 	(junction
 		(at 240.03 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1bc5c5bc-6950-49ea-85ba-bf4204b0dcbc")
+	)
+	(junction
+		(at 160.02 52.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1fcb0619-c001-40ff-94e9-d9ac6b03a7fc")
 	)
 	(junction
 		(at 121.92 116.84)
@@ -2279,6 +2295,12 @@
 		(uuid "ce643b34-9667-45ed-bc93-8755c92239d9")
 	)
 	(junction
+		(at 158.75 49.53)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e905aab2-ebcc-4713-8636-ba0a76e9c50c")
+	)
+	(junction
 		(at 193.04 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2326,6 +2348,16 @@
 	)
 	(wire
 		(pts
+			(xy 163.83 38.1) (xy 160.02 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15e31cd7-dbcc-495c-bb99-afee77096602")
+	)
+	(wire
+		(pts
 			(xy 158.75 116.84) (xy 158.75 111.76)
 		)
 		(stroke
@@ -2333,6 +2365,16 @@
 			(type default)
 		)
 		(uuid "180b7149-e3a9-4642-870f-9e8b3c4b41c6")
+	)
+	(wire
+		(pts
+			(xy 160.02 38.1) (xy 160.02 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a15a2cf-b4e1-492e-9360-60f58d8c9dc0")
 	)
 	(wire
 		(pts
@@ -2363,6 +2405,16 @@
 			(type default)
 		)
 		(uuid "24ffa66e-17d8-4987-a81b-e75c5ffe31f0")
+	)
+	(wire
+		(pts
+			(xy 160.02 52.07) (xy 163.83 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27a71a4f-83f1-462f-a4ed-31d66b53aa69")
 	)
 	(wire
 		(pts
@@ -2546,6 +2598,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 49.53) (xy 158.75 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78f910d1-85ec-431c-bd88-699599a51889")
+	)
+	(wire
+		(pts
 			(xy 166.37 149.86) (xy 121.92 149.86)
 		)
 		(stroke
@@ -2583,6 +2645,16 @@
 			(type default)
 		)
 		(uuid "8684eb13-57cd-4236-82aa-61973087a5d4")
+	)
+	(wire
+		(pts
+			(xy 158.75 35.56) (xy 163.83 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89337765-d540-4f56-9ada-f725b1214a17")
 	)
 	(wire
 		(pts
@@ -2636,7 +2708,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 49.53) (xy 163.83 49.53)
+			(xy 140.97 49.53) (xy 158.75 49.53)
 		)
 		(stroke
 			(width 0)
@@ -2673,6 +2745,16 @@
 			(type default)
 		)
 		(uuid "a56cf175-e25c-451b-a40a-e18872141ac7")
+	)
+	(wire
+		(pts
+			(xy 158.75 49.53) (xy 163.83 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a82564d8-9542-4d4f-b23d-06742909cbf3")
 	)
 	(wire
 		(pts
@@ -2856,7 +2938,7 @@
 	)
 	(wire
 		(pts
-			(xy 140.97 52.07) (xy 163.83 52.07)
+			(xy 140.97 52.07) (xy 160.02 52.07)
 		)
 		(stroke
 			(width 0)
@@ -2996,7 +3078,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 48.26) (xy 162.56 49.53)
+			(xy 140.97 48.26) (xy 140.97 49.53)
 		)
 		(stroke
 			(width 0)
@@ -3326,7 +3408,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 162.56 48.26 0)
+		(at 140.97 48.26 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3335,7 +3417,7 @@
 		(fields_autoplaced yes)
 		(uuid "2284b9a1-6108-41eb-980a-201247b0b446")
 		(property "Reference" "#PWR0205"
-			(at 162.56 52.07 0)
+			(at 140.97 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3344,7 +3426,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 162.56 43.18 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3352,7 +3434,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 162.56 48.26 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3361,7 +3443,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 162.56 48.26 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3370,7 +3452,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 162.56 48.26 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4112,6 +4194,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 168.91 38.1 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a609da5d-9e07-4113-886f-a85a88b2de7d")
+		(property "Reference" "J204"
+			(at 168.275 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TE 640456-2"
+			(at 168.275 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_Molex:Molex_KK-396_A-41791-0002_1x02_P3.96mm_Vertical"
+			(at 168.91 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 168.91 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 168.91 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b2740ce2-f0db-4af0-9f69-846145da064a")
+		)
+		(pin "2"
+			(uuid "6241f78d-ff1c-4091-ade0-b67d54acdfc6")
+		)
+		(instances
+			(project "hw05-led-matrix-sign-controller"
+				(path "/268939db-8332-4e95-b629-4f0847d8eb12/aa11d66a-b9d9-471a-9173-8cee8aff3283"
+					(reference "J204")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 125.73 139.7 0)
 		(unit 1)
@@ -4319,7 +4468,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "e451c074-30e7-40c0-9c1a-c70e68ea2db5")
 		(property "Reference" "J201"
 			(at 168.275 57.15 0)
